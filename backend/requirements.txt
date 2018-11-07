@@ -4,7 +4,6 @@ Click==7.0
 Flask==1.0.2
 Flask-Cors==3.0.6
 idna==2.7
-ItsDangerous==1.0.0
 Jinja2==2.10
 MarkupSafe==1.0
 requests==2.20.0
