@@ -1,0 +1,28 @@
+version: '3'
+
+# Containers we are going to run
+services:
+  frontend: 
+    build: ./frontend
+    ports: 
+      - "80:80"
+      - "443:443"
+    restart: always
+  backend:
+    build: ./backend
+    ports: 
+      - ""
+  db:
+    # We use the predefined Postgres image
+    image: postgres:9.6
+    environment:
+      POSTGRES_PASSWORD: docker
+      POSTGRES_USER: docker
+      POSTGRES_DB: docker
+    restart: always
+    expose:
+      - "5432"
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db/pgdata:/var/lib/postgresql/data
