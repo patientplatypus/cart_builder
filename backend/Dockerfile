@@ -1,19 +1,21 @@
-FROM ubuntu:16.04
 
-RUN apt-get update -y && \
-    apt-get install -y python-pip python-dev
+FROM python:3.6.5-slim
 
-# We copy just the requirements.txt first to leverage Docker cache
-COPY ./requirements.txt /app/requirements.txt
-
+# set the working directory in the container to /app
 WORKDIR /app
 
-RUN pip install -r requirements.txt
+# add the current directory to the container as /app
+ADD . /app
 
-COPY . /app
+# execute everyone's favorite pip command, pip install -r
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
+RUN chmod 700 /app/entrypoint.sh
+
+# unblock port 80 for the Flask app to run on
 EXPOSE 5000
 
-ENTRYPOINT [ "python" ]
+CMD ["/app/entrypoint.sh"]
 
-CMD [ "main.py" ]
+# execute the Flask app
+# CMD ["python", "main.py"]
