@@ -1,5 +1,15 @@
 import json
 import requests
+import logos
+
+
+def searchYoutube(searchString):
+    print('inside searchYoutube()')
+    videos = []
+    videos = logos.youtube_search(searchString)
+    # return jsonify(array=videos)
+    # return 'OK'
+    return videos
 
 # @staticmethod
 def test(**kwargs):
