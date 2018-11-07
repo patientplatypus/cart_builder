@@ -3,13 +3,30 @@ from flask import request
 from flask_cors import CORS
 import array
 import routes
+import sys
+import pymongo 
+from flask import jsonify
 
 app = Flask(__name__)
 CORS(app)
 
+uri = 'mongodb://patientplatypus:Fvnjty0b@ds155203.mlab.com:55203/revenant' 
+client = pymongo.MongoClient(uri)
+db = client.get_default_database()
+
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
+
+@app.route('/searchYoutube', methods=["GET", "POST"])
+def searchYoutube():
+  print('inside /searchYoutube')
+  req = request.get_json(force=True)
+  searchString = req.get('payload').get('searchString')
+  videos = []
+  videos = routes.searchYoutube(searchString)
+  return jsonify(array=videos)
+  
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
