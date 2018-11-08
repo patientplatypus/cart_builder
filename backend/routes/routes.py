@@ -1,28 +1,76 @@
 from __future__ import unicode_literals
 import youtube_dl
+import os
 
 import json
 import requests
 import logos
+import time
 
+# v7AadUgzVgQ
+
+DIYFilePath="./Destination: Captain Toad Treasure Tracker (dunkview)-okYcCeYBPUk.mp3"
+
+def getDIYFile():
+    print('inside getDIYFile()')
+    print('value of DIYFilePath in routes')
+    print(DIYFilePath)
+    return DIYFilePath
 
 def scrapeAudio(tubePath, tubeID):
     print('inside scrapeAudio()')
-    ydl_opts = {
-        'format': 'bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }],
-    }
     print('value of tubePath')
     print(tubePath)
-    downloadString = 'http://www.youtube.com/watch?v='+tubeID
-    print(downloadString)
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([downloadString])
+    scriptString = 'sh ./files/youtubeDL.sh -p '+tubeID
+    os.system(scriptString)
+    global DIYFilePath
+    DIYFilePath = "./files/sampleMP3.mp3"
+    revAudio(tubeID)
     return 'OK'
+
+def revAudio(tubeID):
+    print('inside revAudio')
+    revKey="01DtOaYEmdmSdVsGmYemHplPJmZiWCcf1wTdrKuTsp6hSejxw3YQPT73ahUWkDQJJFnv1OcFc-qcDe2wSOaHx2fW83aWU"
+
+    headers = {
+        'Authorization': 'Bearer '+revKey,
+        'Content-Type': 'application/json',
+    }
+
+
+    data = '{"media_url":"https://104.236.214.151:5000/files/sampleMP3.mp3","metadata":"This is a sample submit jobs option"}'
+
+    print('value of data in revAudio')
+    print(data)
+
+    response = requests.post('https://api.rev.ai/revspeech/v1beta/jobs', headers=headers, data=data)
+
+    data = response.json()
+    print('value of the response (id)')
+    print(data["id"])
+    print('value of total response')
+    print(data)
+    time.sleep(10)
+
+    headers2 = {
+        'Authorization': 'Bearer '+revKey,
+        'Accept': 'text/plain',
+    }
+
+    transcriptURI = 'https://api.rev.ai/revspeech/v1beta/jobs/'+data['id']+'/transcript'
+
+    totalSleepSecs = 0
+
+    while True:
+        response = requests.get(transcriptURI, headers=headers2)
+        print(response.text)
+        totalSleepSecs = totalSleepSecs + 20
+        print('value of totalSleepSecs')
+        print(totalSleepSecs)
+        time.sleep(20)
+
+
+    # time.sleep(10)
 
 
 def searchYoutube(searchString):
