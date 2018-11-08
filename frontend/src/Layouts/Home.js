@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import ProductCard from "../Components/ProductCard";
 import products from "../products.json";
+import CartModal from "../Components/CartModal.js";
+
 
 class Home extends Component {
   state = {};
@@ -19,6 +21,7 @@ class Home extends Component {
             listItem3={product.listItems.listItem3}
           />
         ))}
+        <CartModal />
       </Container>
     );
   }

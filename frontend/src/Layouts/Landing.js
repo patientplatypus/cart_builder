@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SearchBar from '../Components/SearchBar';
-import UrlButton from "../Components/UrlButton";
+// import UrlButton from "../Components/UrlButton";
 import {Col, Row, Container} from 'reactstrap';
 
 class Landing extends Component {
@@ -12,7 +12,7 @@ class Landing extends Component {
                     <Col>
                         <SearchBar/>
 
-                        <UrlButton/>
+                        {/* <UrlButton/> */}
 
                     </Col>
                 </Row>

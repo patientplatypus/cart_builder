@@ -6,6 +6,8 @@ import routes
 import sys
 import pymongo 
 from flask import jsonify
+from flask import send_from_directory
+from flask import send_file
 
 app = Flask(__name__)
 CORS(app)
@@ -17,6 +19,26 @@ db = client.get_default_database()
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
+
+@app.route('/files/<path:path>')
+def send_mp3(path):
+    return send_from_directory('/files', path)
+
+
+@app.route('/getDIYFile', methods=['POST'])
+def getDIYFile():
+    print('getDIYFile')
+    DIYFilePath = routes.getDIYFile()
+    print('value of DIYFilePath in main')
+    print(DIYFilePath)
+    try:
+        return send_file(DIYFilePath, as_attachment=False)
+    except Exception as e:
+        print('there was an exception')
+        print(e)
+        self.log.exception(e)
+        self.Error(400)
+    # return 'OK'
 
 @app.route('/scrapeAudio', methods=['GET', 'POST'])
 def scrapeAudio():
@@ -68,4 +90,4 @@ def linkeduserprofile():
     return routes.linkeduserprofile(req)
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0', port=5000, debug=True)
+  app.run(host='0.0.0.0', port=5000, ssl_context='adhoc', debug=True)

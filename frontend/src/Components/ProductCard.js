@@ -10,7 +10,8 @@ import {
   Row,
   Col,
   ListGroup,
-  ListGroupItem
+  ListGroupItem,
+  Modal
 } from "reactstrap";
 
 import "../Styles/Index.css";
@@ -54,8 +55,8 @@ const ProductCard = props => {
                   {props.listItem3}
                 </ListGroupItem>
               </ListGroup>
-              <Button>Button</Button>
             </CardBody>
+     
           </Col>
         </Row>
       </Card>
