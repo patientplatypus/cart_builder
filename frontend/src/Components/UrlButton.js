@@ -1,5 +1,5 @@
 import  React, { Component } from "react";
-import { Button, List, ListItem } from "reactstrap";
+import { Button, ListGroup, ListGroupItem } from "reactstrap";
 
 //When i click on button it send the ID back 
 // JSON Mock-up 
@@ -40,15 +40,15 @@ export default class UrlButton extends Component {
         return (
            <div>
                {this.state.Videos.length ? (
-                   <List>
+                   <ListGroup>
                        {this.state.Videos.map(Videos => (
-                           <ListItem key={Videos}>
+                           <ListGroupItem key={Videos.tubeID}>
                                 
-                                <Button>{Videos}</Button>   
+                                <Button>{Videos.tubePath}</Button>   
                                 
-                           </ListItem>
+                           </ListGroupItem>
                        ))}
-                   </List>
+                   </ListGroup>
                ) : (
                     <h3>No Videos Found</h3>
                )}

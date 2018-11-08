@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-// Page components
+import Landing from "./Layouts/Landing"
 // import Header from '../Components/Header';
 // import Footer from '../Components/Footer';
 import Home from "./Layouts/Home";
@@ -14,7 +14,7 @@ export default class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path='/' component={Home} />
-            {/* <Route path="/products" component={Products} /> */}
+            <Route path="/Landing" component={Landing} />
           </Switch>
         </BrowserRouter>
         {/* <Footer /> */}
