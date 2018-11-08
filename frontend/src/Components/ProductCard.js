@@ -16,6 +16,13 @@ import {
 import "../Styles/Index.css";
 
 const ProductCard = props => {
+  const cardStyle = {
+    borderRight: "solid 1px rgba(0,0,0,.125)"
+  };
+  const listItemStyle = {
+    border: "none",
+    display: "list-item"
+  };
   return (
     <div>
       <Card>
@@ -23,20 +30,29 @@ const ProductCard = props => {
           <Col>
             <CardImg
               top
-              height="200px"
+              height="100%"
               width="100%"
               src={props.image}
               alt={props.image}
+              style={cardStyle}
             />
           </Col>
           <Col>
             <CardBody>
               <CardTitle>{props.productName}</CardTitle>
+              <hr />
               <CardSubtitle>Model# {props.model}</CardSubtitle>
+              <br />
               <ListGroup>
-                <ListGroupItem>{props.listItem1}</ListGroupItem>
-                <ListGroupItem>{props.listItem2}</ListGroupItem>
-                <ListGroupItem>{props.listItem3}</ListGroupItem>
+                <ListGroupItem style={listItemStyle}>
+                  {props.listItem1}
+                </ListGroupItem>
+                <ListGroupItem style={listItemStyle}>
+                  {props.listItem2}
+                </ListGroupItem>
+                <ListGroupItem style={listItemStyle}>
+                  {props.listItem3}
+                </ListGroupItem>
               </ListGroup>
               <Button>Button</Button>
             </CardBody>
