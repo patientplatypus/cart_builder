@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Input } from "reactstrap";
-import {ProductCard} from '../Components/Card';
+import ProductCard from '../Components/Card.js';
 
 class Products extends Component {
   state = {};
