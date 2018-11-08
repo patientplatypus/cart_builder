@@ -10,7 +10,7 @@ class Home extends Component {
   render() {
     return (
       <Container>
-        <IFrame video="-0CKwq6OiFw" autoplay="0" rel="0" modest="1" />
+          <IFrame style={{ height:'100%' }} video="-0CKwq6OiFw" autoplay="0" rel="0" modest="1" />
         {products.map(product => (
           <ProductCard
             key={product.id}
