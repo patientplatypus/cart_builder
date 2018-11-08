@@ -13,15 +13,30 @@ def hello_world():
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
-    print("inside /test")
-    req = request.get_json(force=True)
-    print(req.get('payload').get('arguments'))
-    kwargs = req.get('payload').get('arguments')
-    print(kwargs)
-    print(type(kwargs))
-    # args_list = array.array("i", args).tolist()
-    # print(args_list)
-    return routes.test(**kwargs)
+    return 'Inside Test'
+    # print("inside /test")
+    # req = request.get_json(force=True)
+    # print(req.get('payload').get('arguments'))
+    # kwargs = req.get('payload').get('arguments')
+    # print(kwargs)
+    # print(type(kwargs))
+    # # args_list = array.array("i", args).tolist()
+    # # print(args_list)
+    # return routes.test(**kwargs)
+
+# I dont see a reason to need POST for the product route yet -Sara
+@app.route('/product', methods=['GET'])
+def product():
+    return "Howdy"
+    # print("inside /product")
+    # req = request.get_json(force=True)
+    # print(req.get('payload').get('arguments'))
+    # kwargs = req.get('payload').get('arguments')
+    # print(kwargs)
+    # print(type(kwargs))
+    # # args_list = array.array("i", args).tolist()
+    # # print(args_list)
+    # return routes.product(**kwargs)
 
 @app.route('/linkedauth', methods=['GET', 'POST'])
 def linkedauth():
