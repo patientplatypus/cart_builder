@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import axios from 'axios';
 // Page components
 import Header from "./Components/Header";
 import YoutubeSearchBar from "./Components/SearchBar";
@@ -10,20 +11,40 @@ import "./App.css";
 
 export default class App extends Component {
   state = {
-    search: ''
+    search: '',
+    result: []
   };
   handleInputChange = (event) => {
+    console.log("inside handle input change");
     console.log(event.target.value);
-    const { name, value } = event.target;
+    // const { name, value } = event.target;
 
     this.setState({
-      [name]: value
-    })
+      search: event.target.value
+    });
   }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    alert("click alert");
+    // alert("click alert");
+    console.log("value", event);
+    console.log("state", this.state.search);
+    const payload = {
+      payload: {
+        searchString: this.state.search
+      }
+    }
+    axios.post("http://104.236.214.151:5000/searchYoutube", { payload })
+      .then(response => {
+        console.log(response);
+        console.log(response.data.array);
+        this.setState({
+          result: response.data.array
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   render() {
     return (
@@ -31,7 +52,7 @@ export default class App extends Component {
         <Header />
         <YoutubeSearchBar
           change={event => this.handleInputChange(event)}
-          submit={() => this.handleFormSubmit}
+          submit={(event) => this.handleFormSubmit(event)}
         />
         <BrowserRouter>
           <Switch>
