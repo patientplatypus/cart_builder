@@ -1,4 +1,4 @@
-import  React, { Component } from "react";
+import React, { Component } from "react";
 import { Button, ListGroup, ListGroupItem } from "reactstrap";
 
 //When i click on button it send the ID back 
@@ -26,33 +26,33 @@ export default class UrlButton extends Component {
         Videos: []
     };
 
-    componentDidMount(){
+    componentDidMount() {
         this.loadVideos();
     };
 
-    loadVideos = () => {
-        API.getVideos()
-        .then(res=> this.setState({Videos: res.data}))
-        .catch(err => console.log(err));
-    }
+    // loadVideos = () => {
+    //     API.getVideos()
+    //     .then(res=> this.setState({Videos: res.data}))
+    //     .catch(err => console.log(err));
+    // }
 
-    render(){
+    render() {
         return (
-           <div>
-               {this.state.Videos.length ? (
-                   <ListGroup>
-                       {this.state.Videos.map(Videos => (
-                           <ListGroupItem key={Videos.tubeID}>
-                                
-                                <Button>{Videos.tubePath}</Button>   
-                                
-                           </ListGroupItem>
-                       ))}
-                   </ListGroup>
-               ) : (
-                    <h3>No Videos Found</h3>
-               )}
-           </div>
+            <div>
+                {this.state.Videos.length ? (
+                    <ListGroup>
+                        {this.state.Videos.map(Videos => (
+                            <ListGroupItem key={Videos.tubeID}>
+
+                                <Button>{Videos.tubePath}</Button>
+
+                            </ListGroupItem>
+                        ))}
+                    </ListGroup>
+                ) : (
+                        <h3>No Videos Found</h3>
+                    )}
+            </div>
         );
     }
 }
