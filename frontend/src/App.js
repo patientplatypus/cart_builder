@@ -6,7 +6,6 @@ import YoutubeSearchBar from "./Components/SearchBar";
 import Footer from "./Components/Footer";
 import Landing from "./Layouts/Landing";
 import Home from "./Layouts/Home";
-import YoutubeSearchBar from "./Components/SearchBar";
 import "./App.css";
 
 export default class App extends Component {
