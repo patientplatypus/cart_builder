@@ -9,11 +9,30 @@ import Home from "./Layouts/Home";
 import "./App.css";
 
 export default class App extends Component {
+  state = {
+    search: ''
+  };
+  handleInputChange = (event) => {
+    console.log(event.target.value);
+    const { name, value } = event.target;
+
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    alert("click alert");
+  }
   render() {
     return (
       <div>
         <Header />
-        <YoutubeSearchBar />
+        <YoutubeSearchBar
+          change={event => this.handleInputChange(event)}
+          submit={() => this.handleFormSubmit}
+        />
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home} />

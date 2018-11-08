@@ -23,8 +23,12 @@ const YoutubeSearchBar = props => {
           name="youtubeSearchBar"
           id="youtubeSearchBar"
           placeholder="What would you like to build today?"
+          onChange={props.change}
         />
-        <Button style={buttonStyle}>
+        <Button
+          style={buttonStyle}
+          onSubmit={props.submit}
+        >
           <i className="fa fa-search" />
         </Button>
       </FormGroup>
