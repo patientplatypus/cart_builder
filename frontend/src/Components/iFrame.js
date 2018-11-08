@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 
 var heightFixer = {
-    height: '25rem',
+    height: '30rem',
+    width: '55rem',
     marginTop: '1rem',
     marginBottom: '1rem',
 }
