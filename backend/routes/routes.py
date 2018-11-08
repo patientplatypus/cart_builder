@@ -1,6 +1,24 @@
+from __future__ import unicode_literals
+import youtube_dl
+
 import json
 import requests
 import logos
+
+
+def scrapeAudio(tubeID):
+    print('inside scrapeAudio()')
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        ydl.download(['http://www.youtube.com/watch?v=hY7m5jjJ9mM'])
+    return 'OK'
 
 
 def searchYoutube(searchString):

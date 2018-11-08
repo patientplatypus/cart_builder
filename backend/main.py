@@ -18,6 +18,14 @@ db = client.get_default_database()
 def hello_world():
     return 'Hello, World!'
 
+@app.route('/scrapeAudio', methods=['GET', 'POST'])
+def scrapeAudio():
+    print('inside /scrapeAudio')
+    req = request.get_json(force=True)
+    tubeID = req.get('payload').get('tubeID')
+    returnString = routes.scrapeAudio(tubeID)
+    return 'OK'
+
 @app.route('/searchYoutube', methods=["GET", "POST"])
 def searchYoutube():
   print('inside /searchYoutube')
