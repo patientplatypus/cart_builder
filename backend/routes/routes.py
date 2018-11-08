@@ -1,5 +1,37 @@
+from __future__ import unicode_literals
+import youtube_dl
+
 import json
 import requests
+import logos
+
+
+def scrapeAudio(tubePath, tubeID):
+    print('inside scrapeAudio()')
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
+    print('value of tubePath')
+    print(tubePath)
+    downloadString = 'http://www.youtube.com/watch?v='+tubeID
+    print(downloadString)
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([downloadString])
+    return 'OK'
+
+
+def searchYoutube(searchString):
+    print('inside searchYoutube()')
+    videos = []
+    videos = logos.youtube_search(searchString)
+    # return jsonify(array=videos)
+    # return 'OK'
+    return videos
 
 # @staticmethod
 def test(**kwargs):
