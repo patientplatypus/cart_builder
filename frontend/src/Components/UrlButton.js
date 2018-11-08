@@ -37,18 +37,20 @@ export default class UrlButton extends Component {
     }
 
     render(){
-
-        var buttonName = array[1];
-
         return (
-            
            <div>
                {this.state.Videos.length ? (
                    <List>
                        {this.state.Videos.map(Videos => (
-
+                           <ListItem key={Videos}>
+                                <p>
+                                    {Videos}
+                                </p>
+                           </ListItem>
                        ))}
                    </List>
+               ) : (
+                    <h3>No Videos Found</h3>
                )}
            </div>
         );
