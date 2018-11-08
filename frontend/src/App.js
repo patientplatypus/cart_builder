@@ -1,21 +1,24 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 // Page components
+// import Header from '../Components/Header';
+// import Footer from '../Components/Footer';
 import Home from "./Layouts/Home";
-import Products from "./Layouts/Products";
 import "./App.css";
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          <Route path="/" exact component={Home} />
-          <Route path="/products" component={Products} />
-        </div>
-      </BrowserRouter>
+      <div>
+        {/* <Header /> */}
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            {/* <Route path="/products" component={Products} /> */}
+          </Switch>
+        </BrowserRouter>
+        {/* <Footer /> */}
+      </div>
     );
   }
 }
-
-export default App;
