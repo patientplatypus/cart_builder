@@ -3,13 +3,14 @@ import { Container, Row, Col } from "reactstrap";
 import ProductCard from "../Components/ProductCard";
 import products from "../products.json";
 import CartModal from "../Components/CartModal.js";
-
+import IFrame from '../Components/iFrame';
 
 class Home extends Component {
   state = {};
   render() {
     return (
       <Container>
+        <IFrame video="-0CKwq6OiFw" autoplay="0" rel="0" modest="1" />
         {products.map(product => (
           <ProductCard
             key={product.id}
