@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 // Page components
-import Home from "./Pages/Home/Home";
-import Products from "./Pages/Products/Products";
+import Home from "./Layouts/Home";
+import Products from "./Layouts/Products";
 import "./App.css";
 
 class App extends Component {
