@@ -29,12 +29,11 @@ export default class App extends Component {
     // alert("click alert");
     console.log("value", event);
     console.log("state", this.state.search);
+    var search_string = this.state.search
     const payload = {
-      payload: {
-        searchString: this.state.search
-      }
+      searchString: search_string
     }
-    axios.post("http://104.236.214.151:5000/searchYoutube", { payload })
+    axios.post("http://104.236.214.151:5000/searchYoutube", { searchString: search_string })
       .then(response => {
         console.log(response);
         console.log(response.data.array);
@@ -54,6 +53,7 @@ export default class App extends Component {
           change={event => this.handleInputChange(event)}
           submit={(event) => this.handleFormSubmit(event)}
         />
+
         {renderIf(this.state.result.length > 0)(
           <div>
             {Array.from({ length: this.state.result.length }, (_, i) =>
