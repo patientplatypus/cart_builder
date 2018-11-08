@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 
+// var heightFixer = {
+//     height: ''
+// }
+
 var IFrame = props => ({
     render: function(){
         var videoSrc = "https://www.youtube.com/embed/" +        this.props.video + '?autoplay=' +
@@ -7,7 +11,7 @@ var IFrame = props => ({
             this.props.rel + '&modestbranding=' +
             this.props.modest;
         return (
-            <div className='container'>
+            <div  className='container'>
                 <iframe className='player' type='text/html' width='100%' height='100%' src={videoSrc} frameborder='0' />
             </div>
         );
