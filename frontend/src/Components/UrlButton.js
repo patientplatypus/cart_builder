@@ -1,8 +1,8 @@
-import  React, { Component } from "react";
+import React, { Component } from "react";
 import { Button, ListGroup, ListGroupItem } from "reactstrap";
 
-//When i click on button it send the ID back 
-// JSON Mock-up 
+//When i click on button it send the ID back
+// JSON Mock-up
 //    {
 //     "array": [
 //         "CATS will make you LAUGH YOUR HEAD OFF - Funny CAT compilation (hY7m5jjJ9mM)",
@@ -17,42 +17,38 @@ import { Button, ListGroup, ListGroupItem } from "reactstrap";
 //         "Funny Cats and Kittens Meowing Compilation (DXUAyRRkI6k)"
 //     ]
 // }
-// http request will go to Peters stuff, and give back 
-
+// http request will go to Peters stuff, and give back
 
 export default class UrlButton extends Component {
+  state = {
+    Videos: []
+  };
 
-    state = {
-        Videos: []
-    };
+  componentDidMount() {
+    this.loadVideos();
+  }
 
-    componentDidMount(){
-        this.loadVideos();
-    };
+  // loadVideos = () => {
+  //     API.getVideos()
+  //     .then(res=> this.setState({Videos: res.data}))
+  //     .catch(err => console.log(err));
+  // }
 
-    loadVideos = () => {
-        API.getVideos()
-        .then(res=> this.setState({Videos: res.data}))
-        .catch(err => console.log(err));
-    }
-
-    render(){
-        return (
-           <div>
-               {this.state.Videos.length ? (
-                   <ListGroup>
-                       {this.state.Videos.map(Videos => (
-                           <ListGroupItem key={Videos.tubeID}>
-                                
-                                <Button>{Videos.tubePath}</Button>   
-                                
-                           </ListGroupItem>
-                       ))}
-                   </ListGroup>
-               ) : (
-                    <h3>No Videos Found</h3>
-               )}
-           </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        {this.state.Videos.length ? (
+          <ListGroup>
+            {this.state.Videos.map(Videos => (
+              <ListGroupItem key={Videos.tubeID}>
+                <Button>{Videos.tubePath}</Button>
+              </ListGroupItem>
+            ))}
+          </ListGroup>
+        ) : (
+          <h3>No Videos Found</h3>
+        )}
+      </div>
+    );
+  }
 }
