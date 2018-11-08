@@ -23,11 +23,12 @@ def scrapeAudio():
     print('inside /scrapeAudio')
     req = request.get_json(force=True)
     tubeID = req.get('payload').get('tubeID')
-    returnString = routes.scrapeAudio(tubeID)
+    tubePath = req.get('payload').get('tubePath')
+    returnString = routes.scrapeAudio(tubePath, tubeID)
     return 'OK'
 
 @app.route('/searchYoutube', methods=["GET", "POST"])
-def searchYoutube():
+def searchYoutube():    
   print('inside /searchYoutube')
   req = request.get_json(force=True)
   searchString = req.get('payload').get('searchString')
