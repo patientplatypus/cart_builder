@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import axios from 'axios';
+import renderIf from 'render-if';
 // Page components
 import Header from "./Components/Header";
 import YoutubeSearchBar from "./Components/SearchBar";
@@ -54,6 +55,14 @@ export default class App extends Component {
           change={event => this.handleInputChange(event)}
           submit={(event) => this.handleFormSubmit(event)}
         />
+        {renderIf(this.state.result.length > 0)(
+          <div>
+            {this.state.result}
+          </div>
+        )}
+        {
+          this.state.result && 
+        }
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home} />
