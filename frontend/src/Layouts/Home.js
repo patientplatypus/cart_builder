@@ -14,9 +14,9 @@ class Home extends Component {
             image={product.image}
             productName={product.productName}
             model={product.model}
-            listItem1={product.listItem1}
-            listItem2={product.listItem2}
-            listItem3={product.listItem3}
+            listItem1={product.listItems.listItem1}
+            listItem2={product.listItems.listItem2}
+            listItem3={product.listItems.listItem3}
           />
         ))}
       </Container>
