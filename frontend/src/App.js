@@ -24,7 +24,6 @@ export default class App extends Component {
       search: event.target.value
     });
   }
-
   handleFormSubmit = (event) => {
     event.preventDefault();
     // alert("click alert");
@@ -57,12 +56,37 @@ export default class App extends Component {
         />
         {renderIf(this.state.result.length > 0)(
           <div>
-            {this.state.result}
+            {Array.from({ length: this.state.result.length }, (_, i) =>
+              <div>
+                <button
+                  onClick={(event) => {
+                    // console.log(this.state.result[i]);
+                    const selectedVideo = this.state.result[i].slice(-12, -1);
+                    console.log("selectedVideo", selectedVideo);
+                    const payload = {
+                      // payload: {
+                      tubeID: selectedVideo,
+                      tubePath: 'garbage'
+                      // }
+                    }
+                    axios.post("http://104.236.214.151:5000/scrapeAudio", { payload })
+                      .then(response => {
+                        console.log(response);
+                        // this.setState({
+                        //   result: response.data.array
+                        // })
+                      })
+                      .catch(err => {
+                        console.log(err);
+                      });
+                  }}
+                >
+                  Video: {this.state.result[i]}
+                </button>
+              </div>
+            )}
           </div>
         )}
-        {
-          this.state.result && 
-        }
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home} />
