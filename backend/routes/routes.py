@@ -6,7 +6,7 @@ import requests
 import logos
 
 
-def scrapeAudio(tubeID):
+def scrapeAudio(tubePath, tubeID):
     print('inside scrapeAudio()')
     ydl_opts = {
         'format': 'bestaudio/best',
@@ -16,8 +16,12 @@ def scrapeAudio(tubeID):
             'preferredquality': '192',
         }],
     }
+    print('value of tubePath')
+    print(tubePath)
+    downloadString = 'http://www.youtube.com/watch?v='+tubeID
+    print(downloadString)
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download(['http://www.youtube.com/watch?v=hY7m5jjJ9mM'])
+        ydl.download([downloadString])
     return 'OK'
 
 
