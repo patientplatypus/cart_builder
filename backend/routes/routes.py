@@ -25,8 +25,8 @@ def scrapeAudio(tubePath, tubeID):
     os.system(scriptString)
     global DIYFilePath
     DIYFilePath = "./files/sampleMP3.mp3"
-    revAudio(tubeID)
-    return 'OK'
+    returnString = revAudio(tubeID)
+    return returnString
 
 def revAudio(tubeID):
     print('inside revAudio')
@@ -37,8 +37,14 @@ def revAudio(tubeID):
         'Content-Type': 'application/json',
     }
 
+    # curl -X POST "https://api.rev.ai/revspeech/v1beta/jobs" -H "Authorization: Bearer <api_key>" -H "Content-Type: application/json" -d "{\"media_url\":\"https://support.rev.com/hc/en-us/article_attachments/200043975/FTC_Sample_1_-_Single.mp3\",\"metadata\":\"This is a sample submit jobs option\"}"
 
-    data = '{"media_url":"https://104.236.214.151:5000/files/sampleMP3.mp3","metadata":"This is a sample submit jobs option"}'
+    # 
+
+# https://104.236.214.151:5000/files/sampleMP3.mp3
+
+
+    data = '{"media_url":"104.236.214.151:5000/files/sampleMP3.mp3","metadata":"This is a sample submit jobs option"}'
 
     print('value of data in revAudio')
     print(data)
@@ -61,16 +67,29 @@ def revAudio(tubeID):
 
     totalSleepSecs = 0
 
-    while True:
+    loopRes = True
+    returnString = ""
+
+    while loopRes:
         response = requests.get(transcriptURI, headers=headers2)
         print(response.text)
-        totalSleepSecs = totalSleepSecs + 20
+        try:
+            resjson = response.json()
+            print("title")
+            print(resjson["title"])
+        except: 
+            print('inside except')
+            print(response.text)
+            loopRes = False
+            returnString = response.text
+            break
+        totalSleepSecs = totalSleepSecs + 5
         print('value of totalSleepSecs')
         print(totalSleepSecs)
-        time.sleep(20)
+        time.sleep(5)
+    
+    return returnString
 
-
-    # time.sleep(10)
 
 
 def searchYoutube(searchString):

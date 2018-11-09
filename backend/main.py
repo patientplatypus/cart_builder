@@ -8,8 +8,9 @@ import pymongo
 from flask import jsonify
 from flask import send_from_directory
 from flask import send_file
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='files')
 CORS(app)
 
 uri = 'mongodb://patientplatypus:Fvnjty0b@ds155203.mlab.com:55203/revenant' 
@@ -20,9 +21,16 @@ db = client.get_default_database()
 def hello_world():
     return 'Hello, World!'
 
+#     from flask import send_from_directory
+
+# @app.route('/js/<path:filename>')
+# def serve_static(filename):
+#     root_dir = os.path.dirname(os.getcwd())
+#     return send_from_directory(os.path.join(root_dir, 'static', 'js'), filename)
+
 @app.route('/files/<path:path>')
 def send_mp3(path):
-    return send_from_directory('/files', path)
+    return send_from_directory(app.static_folder, path)
 
 
 @app.route('/getDIYFile', methods=['POST'])
@@ -47,7 +55,7 @@ def scrapeAudio():
     tubeID = req.get('payload').get('tubeID')
     tubePath = req.get('payload').get('tubePath')
     returnString = routes.scrapeAudio(tubePath, tubeID)
-    return 'OK'
+    return returnString
 
 @app.route('/searchYoutube', methods=["GET", "POST"])
 def searchYoutube():    
