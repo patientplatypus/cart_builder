@@ -1,39 +1,48 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
-// http request will go to Peters stuff, and give back
-const YoutubeSearchBar = props => {
-  const formGroupStyle = {
+class YoutubeSearchBar extends Component {
+  state = {
+    searchString: ''
+  }
+  formGroupStyle = {
     display: "flex",
     justifyContent: "center",
     marginTop: "1rem"
   };
-  const inputStyle = {
+  inputStyle = {
     width: "50%"
   };
-  const buttonStyle = {
+  buttonStyle = {
     backgroundColor: "#fa6400"
   };
-  return (
-    <Form>
-      <FormGroup style={formGroupStyle}>
-        <Input
-          style={inputStyle}
-          type="text"
-          name="youtubeSearchBar"
-          id="youtubeSearchBar"
-          placeholder="What would you like to build today?"
-          onChange={props.change}
-        />
-        <Button
-          style={buttonStyle}
-          onSubmit={props.submit}
-        >
-          <i className="fa fa-search" />
-        </Button>
-      </FormGroup>
-    </Form>
-  );
-};
+  onClickHandler = (event) => {
+    console.log('inside onClickHandler');
+    this.props.submit(event);
+  }
+  render() {
+    return (
+      <Form>
+        <FormGroup style={this.formGroupStyle}>
+          <Input
+            style={this.inputStyle}
+            type="text"
+            name="youtubeSearchBar"
+            id="youtubeSearchBar"
+            placeholder="What would you like to build today?"
+            onChange={this.props.change}
+          />
+          <Button
+            style={this.buttonStyle}
+            // onSubmit={this.props.submit}
+            onClick={(event) => { this.onClickHandler(event) }}
+          >
+            <i className="fa fa-search" />
+          </Button>
+        </FormGroup>
+      </Form>
+    )
+  }
+}
 
 export default YoutubeSearchBar;
