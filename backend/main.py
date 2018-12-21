@@ -4,7 +4,7 @@ from flask_cors import CORS
 import array
 import routes
 import sys
-import pymongo 
+import pymongo
 from flask import jsonify
 from flask import send_from_directory
 from flask import send_file
@@ -13,7 +13,7 @@ import os
 app = Flask(__name__, static_folder='files')
 CORS(app)
 
-uri = 'mongodb://patientplatypus:Fvnjty0b@ds155203.mlab.com:55203/revenant' 
+uri = 'mongodb://patientplatypus:Fvnjty0b@ds155203.mlab.com:55203/revenant'
 client = pymongo.MongoClient(uri)
 db = client.get_default_database()
 
@@ -58,26 +58,41 @@ def scrapeAudio():
     return returnString
 
 @app.route('/searchYoutube', methods=["GET", "POST"])
-def searchYoutube():    
+def searchYoutube():
   print('inside /searchYoutube')
   req = request.get_json(force=True)
   searchString = req.get('payload').get('searchString')
   videos = []
   videos = routes.searchYoutube(searchString)
   return jsonify(array=videos)
-  
+
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
-    print("inside /test")
-    req = request.get_json(force=True)
-    print(req.get('payload').get('arguments'))
-    kwargs = req.get('payload').get('arguments')
-    print(kwargs)
-    print(type(kwargs))
-    # args_list = array.array("i", args).tolist()
-    # print(args_list)
-    return routes.test(**kwargs)
+    return 'Inside Test'
+    # print("inside /test")
+    # req = request.get_json(force=True)
+    # print(req.get('payload').get('arguments'))
+    # kwargs = req.get('payload').get('arguments')
+    # print(kwargs)
+    # print(type(kwargs))
+    # # args_list = array.array("i", args).tolist()
+    # # print(args_list)
+    # return routes.test(**kwargs)
+
+# I dont see a reason to need POST for the product route yet -Sara
+@app.route('/product', methods=['GET'])
+def product():
+    return "Howdy"
+    # print("inside /product")
+    # req = request.get_json(force=True)
+    # print(req.get('payload').get('arguments'))
+    # kwargs = req.get('payload').get('arguments')
+    # print(kwargs)
+    # print(type(kwargs))
+    # # args_list = array.array("i", args).tolist()
+    # # print(args_list)
+    # return routes.product(**kwargs)
 
 @app.route('/linkedauth', methods=['GET', 'POST'])
 def linkedauth():
