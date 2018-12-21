@@ -3,3 +3,24 @@ html {
   margin: 0;
   padding: 0;
 }
+
+body {
+  background-color: #dedcc86e !important;
+}
+
+.center {
+  text-align: center;
+}
+
+.footer {
+  background-color: #353535;
+  color: white;
+  font-size: 0.8rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
+.header-tail {
+  background-color: #fa6400;
+  padding-bottom: 0.5rem;
+}

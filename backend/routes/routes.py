@@ -1,5 +1,104 @@
+from __future__ import unicode_literals
+import youtube_dl
+import os
+
 import json
 import requests
+import logos
+import time
+
+# v7AadUgzVgQ
+
+DIYFilePath="./Destination: Captain Toad Treasure Tracker (dunkview)-okYcCeYBPUk.mp3"
+
+def getDIYFile():
+    print('inside getDIYFile()')
+    print('value of DIYFilePath in routes')
+    print(DIYFilePath)
+    return DIYFilePath
+
+def scrapeAudio(tubePath, tubeID):
+    print('inside scrapeAudio()')
+    print('value of tubePath')
+    print(tubePath)
+    scriptString = 'sh ./files/youtubeDL.sh -p '+tubeID
+    os.system(scriptString)
+    global DIYFilePath
+    DIYFilePath = "./files/sampleMP3.mp3"
+    returnString = revAudio(tubeID)
+    return returnString
+
+def revAudio(tubeID):
+    print('inside revAudio')
+    revKey="01DtOaYEmdmSdVsGmYemHplPJmZiWCcf1wTdrKuTsp6hSejxw3YQPT73ahUWkDQJJFnv1OcFc-qcDe2wSOaHx2fW83aWU"
+
+    headers = {
+        'Authorization': 'Bearer '+revKey,
+        'Content-Type': 'application/json',
+    }
+
+    # curl -X POST "https://api.rev.ai/revspeech/v1beta/jobs" -H "Authorization: Bearer <api_key>" -H "Content-Type: application/json" -d "{\"media_url\":\"https://support.rev.com/hc/en-us/article_attachments/200043975/FTC_Sample_1_-_Single.mp3\",\"metadata\":\"This is a sample submit jobs option\"}"
+
+    # 
+
+# https://104.236.214.151:5000/files/sampleMP3.mp3
+
+
+    data = '{"media_url":"104.236.214.151:5000/files/sampleMP3.mp3","metadata":"This is a sample submit jobs option"}'
+
+    print('value of data in revAudio')
+    print(data)
+
+    response = requests.post('https://api.rev.ai/revspeech/v1beta/jobs', headers=headers, data=data)
+
+    data = response.json()
+    print('value of the response (id)')
+    print(data["id"])
+    print('value of total response')
+    print(data)
+    time.sleep(10)
+
+    headers2 = {
+        'Authorization': 'Bearer '+revKey,
+        'Accept': 'text/plain',
+    }
+
+    transcriptURI = 'https://api.rev.ai/revspeech/v1beta/jobs/'+data['id']+'/transcript'
+
+    totalSleepSecs = 0
+
+    loopRes = True
+    returnString = ""
+
+    while loopRes:
+        response = requests.get(transcriptURI, headers=headers2)
+        print(response.text)
+        try:
+            resjson = response.json()
+            print("title")
+            print(resjson["title"])
+        except: 
+            print('inside except')
+            print(response.text)
+            loopRes = False
+            returnString = response.text
+            break
+        totalSleepSecs = totalSleepSecs + 5
+        print('value of totalSleepSecs')
+        print(totalSleepSecs)
+        time.sleep(5)
+    
+    return returnString
+
+
+
+def searchYoutube(searchString):
+    print('inside searchYoutube()')
+    videos = []
+    videos = logos.youtube_search(searchString)
+    # return jsonify(array=videos)
+    # return 'OK'
+    return videos
 
 from amzsear import AmzSear
 

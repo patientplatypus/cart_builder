@@ -3,13 +3,69 @@ from flask import request
 from flask_cors import CORS
 import array
 import routes
+import sys
+import pymongo
+from flask import jsonify
+from flask import send_from_directory
+from flask import send_file
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='files')
 CORS(app)
+
+uri = 'mongodb://patientplatypus:Fvnjty0b@ds155203.mlab.com:55203/revenant'
+client = pymongo.MongoClient(uri)
+db = client.get_default_database()
 
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
+
+#     from flask import send_from_directory
+
+# @app.route('/js/<path:filename>')
+# def serve_static(filename):
+#     root_dir = os.path.dirname(os.getcwd())
+#     return send_from_directory(os.path.join(root_dir, 'static', 'js'), filename)
+
+@app.route('/files/<path:path>')
+def send_mp3(path):
+    return send_from_directory(app.static_folder, path)
+
+
+@app.route('/getDIYFile', methods=['POST'])
+def getDIYFile():
+    print('getDIYFile')
+    DIYFilePath = routes.getDIYFile()
+    print('value of DIYFilePath in main')
+    print(DIYFilePath)
+    try:
+        return send_file(DIYFilePath, as_attachment=False)
+    except Exception as e:
+        print('there was an exception')
+        print(e)
+        self.log.exception(e)
+        self.Error(400)
+    # return 'OK'
+
+@app.route('/scrapeAudio', methods=['GET', 'POST'])
+def scrapeAudio():
+    print('inside /scrapeAudio')
+    req = request.get_json(force=True)
+    tubeID = req.get('payload').get('tubeID')
+    tubePath = req.get('payload').get('tubePath')
+    returnString = routes.scrapeAudio(tubePath, tubeID)
+    return returnString
+
+@app.route('/searchYoutube', methods=["GET", "POST"])
+def searchYoutube():
+  print('inside /searchYoutube')
+  req = request.get_json(force=True)
+  searchString = req.get('payload').get('searchString')
+  videos = []
+  videos = routes.searchYoutube(searchString)
+  return jsonify(array=videos)
+
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
@@ -57,4 +113,4 @@ def linkeduserprofile():
     return routes.linkeduserprofile(req)
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0', port=5000, debug=True)
+  app.run(host='0.0.0.0', port=5000, ssl_context='adhoc', debug=True)

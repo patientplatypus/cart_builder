@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "productName": "16 oz. Fiberglass Claw Hammer",
+    "model": "N-G16CHD-HN",
+    "image": "https://images.homedepot-static.com/productImages/eaea7598-bc51-46fe-86d4-efc1bce3e723/svn/husky-claw-hammers-n-g16chd-hn-64_400_compressed.jpg",
+    "listItems": {
+      "listItem1": "Durable quality",
+      "listItem2": "Long lasting",
+      "listItem3": "Lifetime Warranty with no questions, no receipt required."
+    }
+  },
+  {
+    "id": 2,
+    "productName": "12 oz. Gloss Apple Red General Purpose Spray Paint",
+    "model": "249124",
+    "image": "https://images.homedepot-static.com/productImages/46c154f2-9be5-477f-b545-a872e3357cb6/svn/apple-red-rust-oleum-painter-s-touch-2x-general-purpose-spray-paint-249124-64_1000.jpg",
+    "listItems": {
+      "listItem1": "Twice the coverage of other Rust-Oleum general purpose paints",
+      "listItem2": "Spray paint for wood, metal, plastic and more with great hide",
+      "listItem3": "Paint and primer in 1 in a variety of smooth, durable colors"
+    }
+  },
+  {
+    "id": 3,
+    "productName": "12 oz. Flat White General Purpose Spray Paint",
+    "model": "249126",
+    "image": "https://images.homedepot-static.com/productImages/daf8ba79-17b4-44fc-b192-fe50e9a44342/svn/flat-white-rust-oleum-painter-s-touch-2x-general-purpose-spray-paint-249126-64_1000.jpg",
+    "listItems": {
+      "listItem1": "Twice the coverage of other Rust-Oleum general purpose paints",
+      "listItem2": "Spray paint for wood, metal, plastic and more with great hide",
+      "listItem3": "Paint and primer in 1 in a variety of smooth, durable colors"
+    }
+  },
+  {
+    "id": 4,
+    "productName": "#11-1/2 x 2-3/8 in. 8-Penny Vinyl-Coated Steel Sinker Nails (1 lb.-Pack)",
+    "model": "8CTDSKR1",
+    "image": "https://images.homedepot-static.com/productImages/e6776fea-8b2c-481c-bf65-f5c28ebbb020/svn/grip-rite-framing-nails-8ctdskr1-64_1000.jpg",
+    "listItems": {
+      "listItem1": "For general construction, carpentry, and framing",
+      "listItem2": "Coated for lubrication when driving",
+      "listItem3": "Coated for firmer holding power"
+    }
+  },
+  {
+    "id": 5,
+    "productName": "7/16 in. x 48 in. x 8ft. Oriented Strand Board",
+    "model": "386081",
+    "image": "https://images.homedepot-static.com/productImages/13514699-84a5-4d4f-9ecb-fb2ac620e37d/svn/oriented-strand-board-osb-386081-64_1000.jpg",
+    "listItems": {
+      "listItem1": "Strong product built for load-bearing strength in construction",
+      "listItem2": "Great for sheathing in walls, flooring, and roof decking",
+      "listItem3": "Peace of mind - no cupping, warping or splitting"
+    }
+  },
+  {
+    "id": 6,
+    "productName": "15 in. Wood Handle Aggressive Tooth Saw",
+    "model": "122SS159",
+    "image": "https://images.homedepot-static.com/productImages/3d38489b-0710-49cf-b356-384b89692443/svn/husky-hand-saws-122ss159-64_1000.jpg",
+    "listItems": {
+      "listItem1": "Includes a tri-bevel tooth design",
+      "listItem2": "Hardened teeth are designed to stay sharp",
+      "listItem3": "Lifetime Warranty with no questions, no receipt required."
+    }
+  },
+  {
+    "id": 7,
+    "productName": "9 in. x 11 in. 100, 150, 220 Grit Medium, Fine and Very Fine Aluminum Oxide Sand Paper (5 Sheets-Pack)",
+    "model": "9005NA",
+    "image": "https://images.homedepot-static.com/productImages/bf89f757-3de5-4e93-b75f-0409078b17fe/svn/3m-drywall-sanding-tools-9005na-64_1000.jpg",
+    "listItems": {
+      "listItem1": "Assorted pack perfect for skipping grits between sanding steps",
+      "listItem2": "Use on paint, wood, metal, plastic, fiberglass, drywall or more",
+      "listItem3": "Use with sanding blocks, tools, or by hand"
+    }
+  }
+]

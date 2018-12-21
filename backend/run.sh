@@ -3,4 +3,4 @@
 
 #!/bin/bash
 docker build -t backend:latest .
-docker run -it -p 5000:5000 backend
+docker run -it -p 5000:5000 -v /tmp:/data backend

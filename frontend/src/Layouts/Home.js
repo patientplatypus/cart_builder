@@ -1,41 +1,28 @@
 import React, { Component } from "react";
-import ProductCard from "../Components/Card";
 import { Container, Row, Col } from "reactstrap";
+import ProductCard from "../Components/ProductCard";
+import products from "../products.json";
+import CartModal from "../Components/CartModal.js";
+import IFrame from '../Components/iFrame';
 
 class Home extends Component {
   state = {};
   render() {
     return (
       <Container>
-        <h1>Home Component</h1>
-        {/* Row */}
-        <Row>
-          <Col>
-            <ProductCard
-              image={
-                "https://images.homedepot-static.com/productImages/eaea7598-bc51-46fe-86d4-efc1bce3e723/svn/husky-claw-hammers-n-g16chd-hn-64_400_compressed.jpg"
-              }
-              title={"16 oz. Fiberglass Claw Hammer"}
-              listItem1={"Durable quality"}
-              listItem2={"Long lasting"}
-              listItem3={
-                "Lifetime Warranty with no questions, no receipt required."
-              }
-            />
-          </Col>
-        </Row>
-        {/* Row */}
-        <Row>
-          <Col>
-            <ProductCard />
-          </Col>
-        </Row>
-        {/* Row */}
-        <Row>
-          <Col>
-            <ProductCard />
-          </Col>
-        </Row>
+          <IFrame style={{ height:'100%' }} video="-0CKwq6OiFw" autoplay="0" rel="0" modest="1" />
+        {products.map(product => (
+          <ProductCard
+            key={product.id}
+            image={product.image}
+            productName={product.productName}
+            model={product.model}
+            listItem1={product.listItems.listItem1}
+            listItem2={product.listItems.listItem2}
+            listItem3={product.listItems.listItem3}
+          />
+        ))}
+        <CartModal />
       </Container>
     );
   }
